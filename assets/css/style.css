@@ -1,0 +1,100 @@
+.glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #D4AF37, #FFD700, #FFE55C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .scroll-hidden {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .scroll-hidden::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styles pour le carrousel */
+        .carousel-slide.active {
+            opacity: 1 !important;
+        }
+
+        .carousel-indicator.active {
+            background-color: #D4AF37 !important;
+            transform: scale(1.2);
+        }
+
+        /* Animation de fondu */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Optimisation des performances */
+        .carousel-slide {
+            will-change: opacity;
+            backface-visibility: hidden;
+        }
+
+        /* Ajustements pour les article-cards afin d'éviter le rognage des images */
+        /* On augmente légèrement la hauteur (ratio) des containers d'images */
+        .article-card .aspect-video {
+            aspect-ratio: 4 / 3; /* un peu plus haut que 16:9 */
+            min-height: 180px; /* garde une hauteur minimale sur petits écrans */
+        }
+
+        /* S'assurer que l'image est bien centrée et visible
+           et ne soit PAS coupée : on utilise `contain` */
+        .article-card .article-image {
+            object-fit: contain;
+            object-position: center center;
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: #0f0f0f; /* couleur de fond visible si l'image a des bandes */
+        }
+
+        /* Option: moins de zoom au hover pour réduire le recadrage lors de l'agrandissement */
+        .article-card .article-image.group-hover\:scale-105:hover {
+            transform: scale(1.03);
+        }
+
+        /* Ajustements similaires pour les product-cards (section Shop) */
+        .product-card > div.aspect-video,
+        .product-card > .bg-cover {
+            aspect-ratio: 4 / 3; /* un peu plus haut pour moins de recadrage */
+            min-height: 180px;
+            background-position: center center;
+            background-size: contain !important; /* montrer l'image entière */
+            background-repeat: no-repeat;
+            background-color: #0f0f0f; /* couleur de fond visible si l'image a des bandes */
+        }
+
+        /* Limiter légèrement l'effet de zoom au survol pour les images de produit */
+        .product-card > div.group-hover\:scale-105:hover,
+        .product-card > .bg-cover.group-hover\:scale-105:hover {
+            transform: scale(1.03);
+        }
+
+        /* Si tu préfères afficher l'image entière sans recadrage, remplace "background-size: cover;" par "background-size: contain;" */
